@@ -41,7 +41,7 @@ var main = function (input) {
   //Input Username//
   if (currentGameMode == WAITING_USERNAME) {
     userName = input;
-    message = `Hi ${userName}, let's play Scissors, Paper, or Stone!`;
+    message = `Hi ${userName}, let's play Scissors, Paper, or Stone!<br><br>You can input "Reverse" to play the reversed version or "AI" to have the computer play for you.`;
     currentGameMode = SPS;
   }
 
@@ -84,13 +84,21 @@ var main = function (input) {
     //Change to Reverse Scissor Paper Stone//
     else if (input === "Reverse") {
       currentGameMode = REVERSE_SPS;
-      message = `The game has changed to Reverse Scissors Paper Stone 😜`;
+      message = `The game has changed to Reverse Scissors Paper Stone 😜<br><br>You can input "Normal" to play the normal version or "AI" to have the computer play for you.`;
     }
 
     //Change to AI Simulation//
     else if (input === "AI") {
       currentGameMode = AI;
-      message = `The game has changed to AI Simulation. Please input the number of games to be simulated.`;
+      message = `The game has changed to AI Simulation. Please input the number of games to be simulated.<br><br>You can input "Normal" to play the normal version or "Reverse" to play the reversed version.`;
+    }
+
+    //Reset the game stats//
+    else if (input === "Reset") {
+      numberOfWins = 0;
+      numberOfDraws = 0;
+      numberOfLoss = 0;
+      message = `The game stats has been reset. Please continue playing the game.`;
     } else {
       message = `Please only input Scissors, Paper, or Stone to play the game.`;
     }
@@ -141,7 +149,15 @@ var main = function (input) {
     //Change to AI Simulation//
     else if (input === "AI") {
       currentGameMode = AI;
-      message = `The game has changed to AI Simulation.`;
+      message = `The game has changed to AI Simulation. Please input the number of games to be simulated.<br><br>You can input "Normal" to play the normal version or "Reverse" to play the reversed version.`;
+    }
+
+    //Reset the game stats//
+    else if (input === "Reset") {
+      numberOfWins = 0;
+      numberOfDraws = 0;
+      numberOfLoss = 0;
+      message = `The game stats has been reset. Please continue playing the game.`;
     } else {
       message = `Please only input Scissors, Paper, or Stone to play the game.`;
     }
@@ -196,21 +212,21 @@ var main = function (input) {
     //Change to Scissor Paper Stone//
     if (input === "Normal") {
       currentGameMode = SPS;
-      message = `The game has changed back to normal Scissors Paper Stone.`;
+      message = `The game has changed back to normal Scissors Paper Stone.<br><br>You can input "Reverse" to play the reversed version or "AI" to have the computer play for you.`;
     }
 
     //Change to Reverse Scissor Paper Stone//
     else if (input === "Reverse") {
       currentGameMode = REVERSE_SPS;
-      message = `The game has changed to Reverse Scissors Paper Stone 😜`;
+      message = `The game has changed to Reverse Scissors Paper Stone 😜<br><br>You can input "Normal" to play the normal version or "AI" to have the computer play for you.`;
     }
 
-    //Change to Scissor Paper Stone//
+    //Reset the game stats//
     else if (input === "Reset") {
       numberOfWins = 0;
       numberOfDraws = 0;
       numberOfLoss = 0;
-      message = `The game stats has been reset.`;
+      message = `The game stats has been reset. Please continue playing the game.`;
     }
   }
 
@@ -218,12 +234,10 @@ var main = function (input) {
   var totalGames = numberOfWins + numberOfLoss + numberOfDraws;
   var winRate = ((numberOfWins / totalGames) * 100).toFixed(2);
 
-  if (
-    (currentGameMode == SPS && totalGames >= 1) ||
-    (currentGameMode == REVERSE_SPS && totalGames >= 1) ||
-    (currentGameMode == AI && totalGames >= 1)
-  ) {
-    message += `<br><br>Your current win rate is ${winRate}%. (${numberOfWins} wins out of ${totalGames} games played.)`;
+  if (currentGameMode !== WAITING_USERNAME && totalGames > 0) {
+    message += `<br><br>Your current win rate is ${winRate}%. (${numberOfWins} wins out of ${totalGames} games played)<br><i>Input "Reset" to reset your game stats`;
+  } else if (currentGameMode !== WAITING_USERNAME && totalGames === 0) {
+    message += `<br><br>Your current win rate is 0.00%. (${numberOfWins} wins out of ${totalGames} games played.)`;
   }
 
   console.log(
