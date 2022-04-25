@@ -153,44 +153,17 @@ var rollDice = function () {
   return randomSix;
 };
 
-//Game Modes//
+//Game modes//
 var SELECT_NO_DICE = "Select the number of dices";
 var GUESS_DICE_NUMBER = "Guess the number on the dices";
 var gameMode = SELECT_NO_DICE;
 
+//Keep track on statuses//
+
 var multiDiceBaseMain = function (input) {
   // Complete the Base: Multi-Dice Game exercise below with multiDiceBaseMain as the main function.
   var message = ``;
-  var counter = 0;
-  var userGuess = ``;
-  var numberOfDice = 0;
 
-  if (gameMode === SELECT_NO_DICE) {
-    numberOfDice = input;
-    console.log(`Number of dices: ${numberOfDice}.`);
-    gameMode = GUESS_DICE_NUMBER;
-  } else if (gameMode === GUESS_DICE_NUMBER) {
-    userGuess = input;
-    console.log(`User guess: ${userGuess}.`);
-
-    while (counter < numberOfDice) {
-      //Set Roll Number//
-      var roll = counter + 1;
-      message += `Roll:${roll} `;
-
-      //Roll Dice//
-      var randomNumber = rollDice();
-      message += `You rolled a ${randomNumber}. `;
-      counter = counter + 1;
-
-      if (userGuess == randomNumber) {
-        message += `You won!<br>`;
-      } else {
-        message += `You lose<br>`;
-      }
-    }
-  }
-  console.log(`Gamemode: ${gameMode}.`);
   return message;
 };
 

@@ -12,7 +12,7 @@ The <html> element is known as the root element of a HTML page. All other elemen
     <!-- The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab) and is the default name given to a bookmark of a webpage. -->
     <title>Basics</title>
     <!-- The <link> element specifies a relationship between this HTML page and an external resource, namely the styles.css file here. In this case, we are linking a stylesheet which is a CSS file containing information relating to the layout and style of the webpage. The syntax within the styles.css file is also referred to as CSS - Cascading Style Sheets. -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
   </head>
 
   <!-- The <body> element defines the document's body, and is a container for all the visible contents that will be rendered by the browser.  -->
@@ -23,46 +23,65 @@ The <html> element is known as the root element of a HTML page. All other elemen
       <ul>
         <li>
           <!-- An <a> tag defines a hyperlink, linking one page to another. The page to link to will be added to the "href" property of the tag. -->
-          <a href="../index.html">Home</a>
+          <a href="../../index.html">Home</a>
         </li>
         <li>
           <!-- An <a> tag defines a hyperlink, linking one page to another. The page to link to will be added to the "href" property of the tag. -->
-          <a href="../day01-data-manipulation-and-functions/in-class/index.html"
+          <a
+            href="../../day01-data-manipulation-and-functions/in-class/index.html"
             >Day 1</a
           >
         </li>
         <li>
-          <a href="../day02-if-statements-boolean-operators/in-class/index.html"
+          <a
+            href="../../day02-if-statements-boolean-operators/in-class/index.html"
             >Day 2</a
           >
         </li>
         <li>
-          <a href="../day03-program-state/in-class/index.html">Day 3</a>
+          <a href="../../day03-program-state/in-class/index.html">Day 3</a>
         </li>
         <li>
-          <a href="../day04-loops/in-class/index.html">Day 4</a>
+          <a href="../../day04-loops/in-class/index.html">Day 4</a>
         </li>
         <li>
-          <a href="../day05-mad-libs/in-class/index.html">Day 5</a>
+          <a href="../../day05-mad-libs/in-class/index.html">Day 5</a>
         </li>
         <li>
-          <a href="../day07-moar-cards/in-class/index.html">Day 7</a>
+          <a href="../../day07-moar-cards/in-class/index.html">Day 7</a>
         </li>
         <li class="project">
-          <a href="../project3-blackjack/index.html">Blackjack</a>
+          <a href="../../project3-blackjack/index.html">Blackjack</a>
         </li>
         <li class="project">
-          <a href="../project2-beat-that/index.html">Beat That!</a>
+          <a href="../../project2-beat-that/comfortable/index.html"
+            >Beat That!</a
+          >
         </li>
         <li class="project">
-          <a href="../project1-sps/index.html">Scissors Paper Stone</a>
+          <a href="../../project1-sps/index.html">Scissors Paper Stone</a>
         </li>
       </ul>
     </nav>
     <!-- The <h1> element defines a large heading. There are 6 pre-set header elements, <h1> to <h6> -->
     <h1 id="header">🚀 Basics Project 2: Beat That! 🚀</h1>
+
+    <div class="flex justify-content-center">
+      <div class="button-group">
+        <a href="../basic/index.html" class="button-group-button"
+          >Score & Lowest Combined</a
+        >
+        <a href="../comfortable/index.html" class="active button-group-button"
+          >Variable Dice & Players</a
+        >
+      </div>
+    </div>
+
     <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
     <div class="container">
+      <b>Let's play the Beat That! game</b>
+      <br />
+      <br />
       <!-- The <p> tag defines a paragraph element. -->
       <p>Input:</p>
       <!-- The self-closing <input /> tag represents a field for a user to enter input. -->
@@ -71,8 +90,10 @@ The <html> element is known as the root element of a HTML page. All other elemen
       <br />
       <!-- The <button> tag represents.. you guessed it! a button. -->
       <button id="submit-button">Submit</button>
-      <p>Output:</p>
-      <div class="output-div" id="output-div"></div>
+      <p>Result:</p>
+      <div class="output-div" id="output-div">
+        Select the number of players that are playing the game.
+      </div>
     </div>
     <!-- Everything below this is incorporating JavaScript programming logic into the webpage. -->
     <!-- The script tag encloses JavaScript syntax for the browser to interpret programtically -->
@@ -96,6 +117,16 @@ The <html> element is known as the root element of a HTML page. All other elemen
 
         // Reset input value
         input.value = "";
+      });
+    </script>
+
+    <script>
+      var input = document.getElementById("input-field");
+      input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("submit-button").click();
+        }
       });
     </script>
   </body>

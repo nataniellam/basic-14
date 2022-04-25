@@ -1,13 +1,20 @@
 //Game Modes//
+// [Eric] Good job in naming your game modes, reduce typos, faster codes
 var WAITING_USERNAME = "Username";
 var SPS = "Scissor Paper Stone";
 var REVERSE_SPS = "Reverse Scissor Paper Stone";
 var AI = "AI Simulated Games";
 
+// [Eric] name your game variables
+var STONE = "Stone";
+var PAPER = "Paper";
+var SCISSORS = "Scissors";
+
 var currentGameMode = WAITING_USERNAME;
 var userName = ``;
 
 //Random Output Generator//
+// [Eric] can this function be simplified
 var randomOutput = function () {
   var message = ``;
   var randomNumber = Math.random() * 3;
@@ -26,6 +33,7 @@ var randomOutput = function () {
 };
 
 //Status Tracker//
+// [Eric] should try to put all global variables together
 var numberOfWins = 0;
 var numberOfLoss = 0;
 var numberOfDraws = 0;
@@ -52,6 +60,24 @@ var main = function (input) {
     console.log(`The computer output is ${computerOutput}.`);
 
     //Scissor Paper Stone Rules//
+    // [Eric] why are we not combining the conditions?
+    // tie scenario
+    // win scenario
+    // lose scenario
+    // if ((input === `Scissors` && computerOutput === `Scissors`) || (input === `Paper` && computerOutput === `Paper`)|| (input === `Stone` && computerOutput === `Stone`))
+
+    // [Eric] you can also consider creating a generateMessage function
+
+    var generateMessage = function (player, computer, outcome) {
+      var message = `You chose ${player} and the computer chose ${computer}.`;
+      if (outcome === "tie") {
+        message += `You draw`;
+      }
+      return message;
+    };
+
+    message = generateMessage(input, computerOutput, "tie");
+
     if (input === `Scissors` && computerOutput === `Scissors`) {
       numberOfDraws = numberOfDraws + 1;
       message = `You chose ${input} and the computer chose ${computerOutput}. You draw.`;
@@ -80,6 +106,11 @@ var main = function (input) {
       numberOfDraws = numberOfDraws + 1;
       message = `You chose ${input} and the computer chose ${computerOutput}. You draw.`;
     }
+
+    // [Eric] You can actually create a global checking function.
+    //  var checkChangingMode = function (input){
+    //  }
+    // checkChangingMode(input)
 
     //Change to Reverse Scissor Paper Stone//
     else if (input === "Reverse") {
